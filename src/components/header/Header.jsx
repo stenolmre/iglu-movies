@@ -1,13 +1,16 @@
 import React from 'react'
+
 import className from '../../utils/className'
+
+import Search from './search/Search.jsx'
 
 import styles from './Header.module.scss'
 
-const Header = ({ genres_map, selected_genre, selectActiveGenre }) => {
+const Header = ({ genres_map, selected_genre, selectActiveGenre, searchMovies }) => {
   return <header className={styles.header}>
     <div className={styles.header__top}>
       <h1 className={styles['header__top-title']}>Popular Movies</h1>
-      <input className={styles['header__top-search']} placeholder="Search for movies"/>
+      <Search searchMovies={searchMovies} />
     </div>
     <ul className={styles.header__genres} role="list">
       <li
