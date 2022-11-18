@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import useMovies from '../../hooks/useMovies'
 import useOnViewport from '../../hooks/useOnViewport'
 
 import Card from './card/Card'
 
 import styles from './Movies.module.scss'
 
-const Movies = ({ genres_map }) => {
-  const { loading, movies, loadMoreMovies } = useMovies()
+const Movies = ({ genres_map, loading, movies, loadMoreMovies }) => {
   const [show_details, setShowDetails] = useState()
 
   const last_list_item = useRef()

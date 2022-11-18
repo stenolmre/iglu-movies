@@ -40,7 +40,11 @@ const Card = ({ movie, show_details, setShowDetails, genres_map }) => {
     ></li>
     {
       show_details && (
-        <Details movie={movie} arrow_position={details_arrow_position} genres_map={genres_map}/>
+        <Details
+          movie={movie}
+          arrow_position={details_arrow_position}
+          genres_map={genres_map}
+        />
       )
     }
   </>

@@ -4,17 +4,17 @@ const API_ENDPOINT = `https://api.themoviedb.org/3/genre/movie/list?api_key=${im
 
 const useGenres = () => {
   const [genres_map, setGenresMap] = useState({})
-  const [genres, setGenres] = useState([])
 
   useEffect(() => {
     const controller = new AbortController()
     const signal = controller.signal
 
+    setGenresMap({})
+
     fetch(API_ENDPOINT, { signal })
       .then(response => response.json())
       .then(data => {
         data.genres.forEach(genre => {
-          setGenres(prev => [...prev, genre.name])
           setGenresMap(prev => ({ ...prev, [genre.id]: genre.name }))
         })
       })
@@ -23,10 +23,7 @@ const useGenres = () => {
     return () => controller.abort()
   }, [])
 
-  return {
-    genres_map,
-    genres
-  }
+  return genres_map
 }
 
 export default useGenres
