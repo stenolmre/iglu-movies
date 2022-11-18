@@ -1,0 +1,61 @@
+@mixin flex($align: null, $align-content: null, $justify: null, $direction: null, $wrap: null, $gap: null, $row-gap: null, $column-gap: null) {
+  display: flex;
+
+  @if ($align-content != null) {
+    align-content: $align-content;
+  } @else if ($align != null) {
+    align-items: $align;
+  }
+
+  @if ($justify != null) {
+    justify-content: $justify;
+  }
+
+  @if ($direction != null) {
+    flex-direction: $direction;
+  }
+
+  @if ($wrap != null) {
+    flex-wrap: $wrap;
+  }
+
+  @if ($gap != null) {
+    gap: $gap;
+  } @else {
+    @if ($row-gap != null) {
+      row-gap: $row-gap;
+    }
+
+    @if ($column-gap != null) {
+      column-gap: $column-gap;
+    }
+  }
+}
+
+@mixin grid($columns: null, $rows: null, $gap: null, $column-gap: null, $row-gap: null, $align: null) {
+  display: grid;
+
+  @if ($columns != null) {
+    grid-template-columns: $columns;
+  }
+
+  @if ($rows != null) {
+    grid-template-rows: $rows;
+  }
+
+  @if ($gap != null) {
+    grid-gap: $gap;
+  } @else {
+    @if ($row-gap != null) {
+      row-gap: $row-gap;
+    }
+
+    @if ($column-gap != null) {
+      column-gap: $column-gap;
+    }
+  }
+
+  @if ($align != null) {
+    align-items: $align;
+  }
+}
