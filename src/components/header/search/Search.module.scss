@@ -1,7 +1,43 @@
+@use './../../../styles/utils' as utils;
+
+$dimension: 2.5rem;
+
 .search {
-  height: 2.5rem;
-  padding-inline: var(--spacing);
+  @include utils.flex(
+    $align: center,
+    $justify: space-between
+  );
+  position: relative;
   background: rgba(255, 255, 255, 0.1);
-  font-size: 1rem;
-  color: var(--cl-text);
+
+  > input {
+    height: $dimension;
+    padding-inline: var(--spacing) $dimension;
+    border: 1px solid transparent;
+    border-radius: .125rem;
+    outline: none;
+    background-color: transparent;
+    font-size: 1rem;
+    color: var(--cl-text);
+
+    &:focus {
+      border-color: 1px solid var(--cl-text);
+    }
+  }
+
+  > button {
+    width: $dimension;
+    height: $dimension;
+    @include utils.flex(
+      $align: center,
+      $justify: center
+    );
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
+    color: var(--cl-text);
+    cursor: pointer;
+  }
 }

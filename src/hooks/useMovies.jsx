@@ -41,7 +41,7 @@ const useMovies = () => {
       })
 
     return () => controller.abort()
-  }, [current_page])
+  }, [current_page, selected_genre, query])
 
   const loadMoreMovies = useCallback(() => {
     if (current_page >= total_pages) return

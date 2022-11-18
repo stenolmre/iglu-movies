@@ -7,7 +7,7 @@ import Card from './card/Card'
 import styles from './Movies.module.scss'
 
 const Movies = ({ genres_map, loading, movies, loadMoreMovies }) => {
-  const [show_details, setShowDetails] = useState()
+  const [show_details, setShowDetails] = useState(-1)
 
   const last_list_item = useRef()
   const is_intersection = useOnViewport(last_list_item)
