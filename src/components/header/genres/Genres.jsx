@@ -18,7 +18,9 @@ const Genres = ({ genres_map, selected_genre, selectActiveGenre }) => {
         [styles['header__genres-active']]: selected_genre == null
       })}
       onClick={() => selectActiveGenre(null)}
-    >All Movies</li>
+    >
+      All Movies
+    </li>
     {
       Object.entries(genres_map)
         .map(([genre_id, genre_name], index) => (
@@ -28,7 +30,9 @@ const Genres = ({ genres_map, selected_genre, selectActiveGenre }) => {
               [styles['header__genres-active']]: selected_genre == genre_id
             })}
             onClick={() => selectActiveGenre(genre_id)}
-          >{genre_name}</li>
+          >
+            {genre_name}
+          </li>
         ))
         .slice(0, length_of_visible_genres)
     }
@@ -36,7 +40,7 @@ const Genres = ({ genres_map, selected_genre, selectActiveGenre }) => {
       <span onClick={() => setShowMore(prev => !prev)}>More</span>
       {
         show_more && (
-          <ul>
+          <ul role="list">
             {
               Object.entries(genres_map)
                 .map(([genre_id, genre_name], index) => (
@@ -46,7 +50,9 @@ const Genres = ({ genres_map, selected_genre, selectActiveGenre }) => {
                       [styles['header__genres-active']]: selected_genre == genre_id
                     })}
                     onClick={() => selectActiveGenre(genre_id)}
-                  >{genre_name}</li>
+                  >
+                    {genre_name}
+                  </li>
                 ))
                 .slice(length_of_visible_genres)
             }

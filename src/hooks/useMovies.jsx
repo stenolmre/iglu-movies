@@ -64,6 +64,7 @@ const useMovies = () => {
     loading,
     movies,
     selected_genre,
+    query,
 
     loadMoreMovies,
     selectActiveGenre,

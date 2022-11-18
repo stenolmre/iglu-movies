@@ -4,7 +4,7 @@ import Card from './card/Card'
 
 import styles from './Movies.module.scss'
 
-const Movies = ({ genres_map, loading, movies, loadMoreMovies }) => {
+const Movies = ({ genres_map, loading, movies, query, selected_genre, loadMoreMovies }) => {
   const [show_details, setShowDetails] = useState(-1)
 
   const movies_list = useRef()
@@ -30,27 +30,23 @@ const Movies = ({ genres_map, loading, movies, loadMoreMovies }) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [loadMovies]);
+  }, [loadMovies])
 
-  return <>
-    {
-      loading
-        ? <div className={styles.movies__loading}/>
-        : <>
-            <ul ref={movies_list} className={styles.movies__list} role="list">
-              {
-                movies.map((movie, index) => <Card
-                  key={index}
-                  movie={movie}
-                  show_details={show_details === index}
-                  genres_map={genres_map}
-                  setShowDetails={() => setShowDetails(index)}
-                />)
-              }
-            </ul>
-        </>
-    }
-  </>
+  useEffect(() => (setShowDetails(-1)), [query, selected_genre])
+
+  return loading
+    ? <div className={styles.movies__loading}/>
+    : <ul ref={movies_list} className={styles.movies__list} role="list">
+      {
+        movies.map((movie, index) => <Card
+          key={index}
+          movie={movie}
+          show_details={show_details === index}
+          genres_map={genres_map}
+          setShowDetails={() => setShowDetails(index)}
+        />)
+      }
+    </ul>
 }
 
 export default Movies

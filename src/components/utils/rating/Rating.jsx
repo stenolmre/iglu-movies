@@ -1,13 +1,13 @@
 import React from 'react'
 
-import styles from './Stars.module.scss'
+import styles from './Rating.module.scss'
 
-const Stars = ({ rating }) => {
+const Rating = ({ rating }) => {
   return <div
-    className={styles.stars}
+    className={styles.rating}
     style={{ '--rating': rating }}
     aria-label="Rating of this product is 2.3 out of 10."
   />
 }
 
-export default Stars
+export default Rating
