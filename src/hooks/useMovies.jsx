@@ -15,7 +15,12 @@ const useMovies = () => {
       .then(response => response.json())
       .then(data => {
         setTotalPages(data.total_pages)
-        setMovies(prev_movies => [...prev_movies, data.results])
+
+        if (current_page === 1) {
+          setMovies(data.results)
+        } else {
+          setMovies(prev_movies => [...prev_movies, ...data.results])
+        }
       })
       .catch(error => console.log(error))
 

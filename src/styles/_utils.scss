@@ -32,7 +32,7 @@
   }
 }
 
-@mixin grid($columns: null, $rows: null, $gap: null, $column-gap: null, $row-gap: null, $align: null) {
+@mixin grid($columns: null, $rows: null, $gap: null, $column-gap: null, $row-gap: null, $align: null, $flow: null) {
   display: grid;
 
   @if ($columns != null) {
@@ -57,5 +57,9 @@
 
   @if ($align != null) {
     align-items: $align;
+  }
+
+  @if ($flow != null) {
+    grid-auto-flow: $flow;
   }
 }

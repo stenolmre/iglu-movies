@@ -1,0 +1,27 @@
+
+
+.card {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: .125rem;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  cursor: pointer;
+
+  &.active {
+    transform: scale(1.05);
+  }
+}
+
+.details {
+  grid-column: 1 / -1;
+
+  width: calc(100% + calc(var(--spacing) * 2));
+  padding: var(--spacing);
+  position: relative;
+  left: calc(var(--spacing) * -1);
+  background-color: var(--cl-accent);
+}

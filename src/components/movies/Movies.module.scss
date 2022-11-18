@@ -1,0 +1,12 @@
+@use '../../styles/utils' as utils;
+
+.movies__list {
+  margin: 0;
+  padding: var(--spacing);
+
+  @include utils.grid(
+    $columns: repeat(auto-fit, minmax(100px, 1fr)),
+    $gap: var(--spacing),
+    $flow: dense
+  );
+}

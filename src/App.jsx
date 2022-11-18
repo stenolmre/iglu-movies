@@ -1,14 +1,13 @@
 import React from 'react'
 
-import useMovies from './hooks/useMovies'
-
 import Header from './components/header/Header'
+import Movies from './components/movies/Movies'
 import Footer from './components/footer/Footer'
 
 function App() {
-  useMovies()
   return <>
     <Header />
+    <Movies />
     <Footer />
   </>
 }
