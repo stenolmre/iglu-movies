@@ -1,0 +1,95 @@
+@use 'sass:color';
+@use '../../../styles/utils' as utils;
+
+$column-width: 20rem;
+$gap: 1rem;
+
+.details {
+  grid-column: 1 / -1;
+
+  width: calc(100% + calc(var(--spacing) * 2));
+  position: relative;
+  left: calc(var(--spacing) * -1);
+
+  @include utils.grid(
+    $columns: repeat(auto-fit, minmax($column-width, 1fr)),
+    $gap: $gap
+  );
+
+  @media (max-width: calc(2 * $column-width + $gap)) {
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  border-top: 1px solid hsl(0, 0%, 25%);
+  border-bottom: 1px solid hsl(0, 0%, 25%);
+  background-color: var(--cl-accent);
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--arrow-position, 10rem);
+    bottom: calc(var(--spacing) / 2);
+    border-width: calc(var(--spacing) / 2);
+    border-style: solid;
+    border-top: unset;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+
+  &::before {
+    transform: translate(-50%, -100%);
+    border-bottom-color: hsl(0, 0%, 25%);
+  }
+
+  &::after {
+    transform: translate(-50%, calc(-100% + 2px));
+    border-bottom-color: var(--cl-accent);
+  }
+
+  > .details__content {
+    padding: var(--spacing);
+    @include utils.flex(
+      $direction: column,
+      $justify: center,
+      $row-gap: .5rem
+    );
+  }
+}
+
+.details__poster {
+  @include utils.flex();
+
+  position: relative;
+  border-radius: .125rem;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  z-index: 2;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+
+    background-image: linear-gradient(
+      90deg,
+      #{hsla(var(--cl-accent-raw), 1)}    0%,
+      #{hsla(var(--cl-accent-raw), .75)}  8.67%,
+      #{hsla(var(--cl-accent-raw), .55)}  24.67%,
+      #{hsla(var(--cl-accent-raw), 0)}    100%
+    );
+
+    @media (max-width: calc(2 * $column-width + $gap)) {
+      background-image: linear-gradient(
+        180deg,
+        #{hsla(var(--cl-accent-raw), 1)}    0%,
+        #{hsla(var(--cl-accent-raw), .75)}  8.67%,
+        #{hsla(var(--cl-accent-raw), .55)}  24.67%,
+        #{hsla(var(--cl-accent-raw), 0)}    100%
+      );
+    }
+  }
+}

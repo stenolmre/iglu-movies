@@ -22,7 +22,7 @@ const useMovies = () => {
           setMovies(prev_movies => [...prev_movies, ...data.results])
         }
       })
-      .catch(error => console.log(error))
+      .catch(error => console.warn(error))
 
     return () => controller.abort()
   }, [current_page])
