@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 const API_ENDPOINT = `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&page=`
 
 const useMovies = () => {
+  const [loading, setLoading] = useState(true)
   const [movies, setMovies] = useState([])
   const [current_page, setCurrentPage] = useState(1)
   const [total_pages, setTotalPages] = useState(1)
@@ -10,6 +11,10 @@ const useMovies = () => {
   useEffect(() => {
     const controller = new AbortController()
     const signal = controller.signal
+
+    if (current_page === 1) {
+      setLoading(true)
+    }
 
     fetch(`${API_ENDPOINT}${current_page}`, { signal })
       .then(response => response.json())
@@ -23,6 +28,9 @@ const useMovies = () => {
         }
       })
       .catch(error => console.warn(error))
+      .finally(() => {
+        setLoading(false)
+      })
 
     return () => controller.abort()
   }, [current_page])
@@ -33,6 +41,7 @@ const useMovies = () => {
   }, [current_page, total_pages])
 
   return {
+    loading,
     movies,
     loadMoreMovies
   }

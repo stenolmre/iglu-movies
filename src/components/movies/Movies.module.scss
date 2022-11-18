@@ -1,5 +1,40 @@
 @use '../../styles/utils' as utils;
 
+.movies__loading {
+  min-height: 90vh;
+  padding: var(--spacing) !important;
+  position: relative;
+  background-color: var(--cl-accent);
+
+  &::before {
+    --spacing: 2rem;
+
+    content: '';
+    width: var(--spacing);
+    height: var(--spacing);
+    position: absolute;
+    top: var(--spacing);
+    left: 50%;
+    top: var(--spacing);
+    border-top: 1px solid var(--cl-primary);
+    border-radius: 100%;
+
+    animation-name: spin;
+    animation-duration: 900ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes spin {
+    from {
+      transform:rotate(0deg);
+    }
+    to {
+      transform:rotate(360deg);
+    }
+  }
+}
+
 .movies__list {
   padding: var(--spacing) !important;
 
