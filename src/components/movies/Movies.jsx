@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import useOnViewport from '../../hooks/useOnViewport'
 
@@ -10,13 +10,7 @@ const Movies = ({ genres_map, loading, movies, loadMoreMovies }) => {
   const [show_details, setShowDetails] = useState(-1)
 
   const last_list_item = useRef()
-  const is_intersection = useOnViewport(last_list_item)
-
-  useEffect(() => {
-    if (is_intersection) {
-      loadMoreMovies()
-    }
-  }, [is_intersection])
+  useOnViewport(last_list_item, () => loadMoreMovies())
 
   return <>
     {

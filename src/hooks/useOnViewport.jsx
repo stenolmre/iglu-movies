@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
-const useOnViewport = ref => {
-  const [is_intersecting, setIntersecting] = useState(false)
+const useOnViewport = (reference, callback) => {
+  return useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        console.log(entry)
+        if (entry.isIntersecting && callback != null) {
+          callback()
+        }
+      }
+    )
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => setIntersecting(entry.isIntersecting))
-
-    if (ref && ref.current) observer.observe(ref.current)
-    return () => observer.unobserve(ref.current)
+    if (reference.current) observer.observe(reference.current)
+    return () => observer.unobserve(reference.current)
   }, [])
-
-  return is_intersecting
 }
 
 export default useOnViewport

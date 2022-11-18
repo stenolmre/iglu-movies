@@ -16,27 +16,11 @@
   @include utils.flex(
     $gap: var(--spacing),
     $align: center,
-    $justify: space-between
+    $justify: space-between,
+    $wrap: wrap
   );
 
   > .header__top-title {
     font-size: 2rem;
-  }
-}
-
-.header__genres {
-  font-size: 1rem;
-
-  @include utils.flex(
-    $gap: calc(var(--spacing) / 2),
-    $wrap: wrap
-  );
-
-  > li {
-    cursor: pointer;
-
-    &:not(.header__genres-active) {
-      opacity: .5;
-    }
   }
 }

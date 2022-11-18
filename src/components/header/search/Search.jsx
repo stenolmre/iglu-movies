@@ -21,7 +21,7 @@ const Search = ({ searchMovies }) => {
       onChange={e => setQuery(e.target.value)}
     />
     <button type="submit">
-      <span class="material-symbols-outlined">search</span>
+      <span className="material-symbols-outlined">search</span>
     </button>
   </form>
 }
