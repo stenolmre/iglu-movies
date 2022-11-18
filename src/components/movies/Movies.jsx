@@ -1,6 +1,4 @@
-import React, { useRef, useState } from 'react'
-
-import useOnViewport from '../../hooks/useOnViewport'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import Card from './card/Card'
 
@@ -9,15 +7,37 @@ import styles from './Movies.module.scss'
 const Movies = ({ genres_map, loading, movies, loadMoreMovies }) => {
   const [show_details, setShowDetails] = useState(-1)
 
-  const last_list_item = useRef()
-  useOnViewport(last_list_item, () => loadMoreMovies())
+  const movies_list = useRef()
+
+  const handleScroll = () => {
+    if (window.innerHeight + document.documentElement.scrollTop === document.scrollingElement.scrollHeight) {
+      loadMoreMovies()
+    }
+  }
+
+  const loadMovies = useCallback(() => {
+    if (movies_list.current == null) return
+
+    const { height } = movies_list.current.getBoundingClientRect()
+
+    if (height < window.innerHeight && movies != null) {
+      loadMoreMovies()
+    }
+  }, [movies_list.current, movies])
+
+  useEffect(() => {
+    loadMovies()
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loadMovies]);
 
   return <>
     {
       loading
         ? <div className={styles.movies__loading}/>
         : <>
-            <ul className={styles.movies__list} role="list">
+            <ul ref={movies_list} className={styles.movies__list} role="list">
               {
                 movies.map((movie, index) => <Card
                   key={index}
@@ -30,7 +50,6 @@ const Movies = ({ genres_map, loading, movies, loadMoreMovies }) => {
             </ul>
         </>
     }
-    <div ref={last_list_item}></div>
   </>
 }
 
