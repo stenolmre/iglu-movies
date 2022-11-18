@@ -1,8 +1,7 @@
 @use '../../styles/utils' as utils;
 
 .movies__list {
-  margin: 0;
-  padding: var(--spacing);
+  padding: var(--spacing) !important;
 
   @include utils.grid(
     $columns: repeat(auto-fit, minmax(100px, 1fr)),

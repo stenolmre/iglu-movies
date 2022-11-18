@@ -50,6 +50,14 @@ $gap: 1rem;
       $justify: center,
       $row-gap: .5rem
     );
+
+    > .details__content-genres {
+      @include utils.flex(
+        $wrap: wrap,
+        $gap: calc(var(--spacing) / 2)
+      );
+      color: hsl(0, 0%, 50%);
+    }
   }
 }
 

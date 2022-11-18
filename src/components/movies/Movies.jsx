@@ -7,7 +7,7 @@ import Card from './card/Card'
 
 import styles from './Movies.module.scss'
 
-const Movies = () => {
+const Movies = ({ genres_map }) => {
   const { movies, loadMoreMovies } = useMovies()
   const [show_details, setShowDetails] = useState()
 
@@ -16,17 +16,17 @@ const Movies = () => {
 
   useEffect(() => {
     if (is_intersection) {
-      console.log('LOAD MORE')
       loadMoreMovies()
     }
   }, [is_intersection])
 
-  return <ul className={styles.movies__list} type="none">
+  return <ul className={styles.movies__list} role="list">
     {
       movies.map((movie, index) => <Card
         key={index}
         movie={movie}
         show_details={show_details === index}
+        genres_map={genres_map}
         setShowDetails={() => setShowDetails(index)}
       />)
     }

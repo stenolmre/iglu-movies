@@ -3,5 +3,47 @@
 .header {
   width: 100%;
   padding: var(--spacing);
+
+  @include utils.flex(
+    $gap: var(--spacing),
+    $direction: column
+  );
+
   background-color: var(--cl-primary);
+}
+
+.header__top {
+  @include utils.flex(
+    $gap: var(--spacing),
+    $align: center,
+    $justify: space-between
+  );
+
+  > .header__top-title {
+    font-size: 2rem;
+  }
+
+  > .header__top-search {
+    height: 2.5rem;
+    padding-inline: var(--spacing);
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+  }
+}
+
+.header__genres {
+  font-size: 1rem;
+
+  @include utils.flex(
+    $gap: calc(var(--spacing) / 2),
+    $wrap: wrap
+  );
+
+  > li {
+    cursor: pointer;
+
+    &:not(.header__genres-active) {
+      opacity: .5;
+    }
+  }
 }

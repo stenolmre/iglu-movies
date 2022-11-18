@@ -6,7 +6,7 @@ import Details from '../details/Details'
 
 import styles from './Card.module.scss'
 
-const Card = ({ movie, show_details, setShowDetails }) => {
+const Card = ({ movie, show_details, setShowDetails, genres_map }) => {
   const card = useRef()
   const [details_arrow_position, setDetailsArrowPosition] = useState(0)
 
@@ -40,7 +40,7 @@ const Card = ({ movie, show_details, setShowDetails }) => {
     ></li>
     {
       show_details && (
-        <Details movie={movie} arrow_position={details_arrow_position}/>
+        <Details movie={movie} arrow_position={details_arrow_position} genres_map={genres_map}/>
       )
     }
   </>
