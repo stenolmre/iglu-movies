@@ -16,10 +16,6 @@ $gap: 1rem;
     $gap: $gap
   );
 
-  @media (max-width: calc(2 * $column-width + $gap)) {
-    grid-template-rows: repeat(2, 1fr);
-  }
-
   border-top: 1px solid hsl(0, 0%, 25%);
   border-bottom: 1px solid hsl(0, 0%, 25%);
   background-color: var(--cl-accent);
@@ -81,8 +77,12 @@ $gap: 1rem;
       #{hsla(var(--cl-accent-raw), .55)}  24.67%,
       #{hsla(var(--cl-accent-raw), 0)}    100%
     );
+  }
 
-    @media (max-width: calc(2 * $column-width + $gap)) {
+  @media (max-width: calc(2 * $column-width + $gap)) {
+    aspect-ratio: 16 / 9;
+
+    &::after {
       background-image: linear-gradient(
         180deg,
         #{hsla(var(--cl-accent-raw), 1)}    0%,
