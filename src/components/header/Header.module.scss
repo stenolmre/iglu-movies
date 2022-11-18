@@ -1,0 +1,7 @@
+@use './../../styles/utils' as utils;
+
+.header {
+  width: 100%;
+  padding: var(--spacing);
+  background-color: var(--cl-primary);
+}
