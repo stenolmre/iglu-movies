@@ -6,16 +6,14 @@ import Details from '../details/Details'
 
 import styles from './Card.module.scss'
 
-const Card = ({ movie, show_details, setShowDetails, genres_map }) => {
+const Card = ({ movie, show_details, showDetails, genres_map }) => {
   const card = useRef()
   const [details_arrow_position, setDetailsArrowPosition] = useState(0)
 
-  function handleClick () {
+  function showMovieDetails () {
     calculateDetailsArrowPosition()
 
-    if (!show_details) {
-      setShowDetails()
-    }
+    if (!show_details) showDetails()
   }
 
   function calculateDetailsArrowPosition () {
@@ -36,7 +34,7 @@ const Card = ({ movie, show_details, setShowDetails, genres_map }) => {
         [styles.active]: show_details
       })}
       style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})` }}
-      onClick={handleClick}
+      onClick={showMovieDetails}
     ></li>
     {
       show_details && (

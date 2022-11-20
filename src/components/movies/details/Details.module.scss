@@ -51,6 +51,10 @@ $gap: 1rem;
       $row-gap: .5rem
     );
 
+    > p {
+      max-width: 40em;
+    }
+
     > .details__content-genres {
       @include utils.flex(
         $wrap: wrap,

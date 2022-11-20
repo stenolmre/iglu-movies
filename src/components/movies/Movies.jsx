@@ -43,7 +43,7 @@ const Movies = ({ genres_map, loading, movies, query, selected_genre, loadMoreMo
           movie={movie}
           show_details={show_details === index}
           genres_map={genres_map}
-          setShowDetails={() => setShowDetails(index)}
+          showDetails={() => setShowDetails(index)}
         />)
       }
     </ul>

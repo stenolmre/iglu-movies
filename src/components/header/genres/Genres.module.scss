@@ -25,6 +25,7 @@
 
       > li {
         padding: .25rem var(--spacing);
+        white-space: nowrap;
 
         &:hover {
           background-color: #{hsla(var(--cl-primary-raw), .15)};
